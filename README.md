@@ -1,5 +1,5 @@
-# giscs4_fires
-GIS CS4 Fires Project
+# GIS CS4 Fires Project
+
 
 The aim of this project is to analyse the latest Fire data, compare that with current wind speed, and try to make an assessment as what local pollution levels will be in the next 24 hours
 
