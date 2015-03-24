@@ -18,6 +18,49 @@ def getCSVStrFromIndex(zi, zstrCSV):
 
 ###############################################################################
 # values from csv
+from getCSVStrFromIndex import *
+
+def getCSVIntFromIndex(zi, zstrCSV):
+    strCSV = getCSVStrFromIndex(zi, zstrCSV);
+    try:
+        if len(strCSV) == 0:
+            return None
+        iCSV = int(strCSV)
+    except:
+        return None
+    return iCSV
+
+
+def getCSVFloatFromIndex(zi, zstrCSV):
+    strCSV = getCSVStrFromIndex(zi, zstrCSV);
+    try:
+        if len(strCSV) == 0:
+            return None
+        floatCSV = float(strCSV)
+    except:
+        return None
+    return floatCSV
+    
+#Fire Data
+def getLatitude(zstrFireCSV):
+    return getCSVFloatFromIndex(1, zstrFireCSV)
+
+
+def getLongitude(zstrFireCSV):
+    return getCSVFloatFromIndex(2, zstrFireCSV)
+
+
+def getMagnitude(zstrFireCSV):
+    return getCSVFloatFromIndex(3, zstrFireCSV)
+
+#Wind Data
+def getWindSpeed(zstrWeatherCSV):
+    return getCSVFloatFromIndex(6, zstrWeatherCSV)
+
+
+def getWindDirection(zstrWeatherCSV):
+    return getCSVIntFromIndex(5, zstrWeatherCSV)
+
 
 
 ###############################################################################
