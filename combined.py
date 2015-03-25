@@ -293,26 +293,26 @@ def Main():
 "17.838,98.334,318.7,1.4,1.2,2015-03-21, 0635,A,60,5.0       ,305,12.7",\
         ]
 
-    sALine = ""
-    for sALine in lstWeatherData:
+    strALine = ""
+    for strALine in lstWeatherData:
         # we want the latest - so keep going until the end
-        if len(sALine) > 0:
-            fValue = getWindSpeed    (sALine)
+        if len(strALine) > 0:
+            fValue = getWindSpeed    (strALine)
             if fValue != None and fValue >= 0:
                 fWindSpeed = fValue
 
-            fValue = getWindDirection(sALine)
+            fValue = getWindDirection(strALine)
             if fValue != None and fValue > -361 and fValue <361:
                  fWindDirection = fValue
 
 
     # now check the fire data
-    for sALine in lstFireData:
+    for strALine in lstFireData:
         # Where is the fire?
-        if len(sALine) > 0:
-            fFireLat       = getLatitude (sALine)
-            fFireLong      = getLongitude(sALine)
-            fFireMagnitude = getMagnitude(sALine)
+        if len(strALine) > 0:
+            fFireLat       = getLatitude (strALine)
+            fFireLong      = getLongitude(strALine)
+            fFireMagnitude = getMagnitude(strALine)
 
             if fFireLat != None and \
                 fFireLong != None and \
