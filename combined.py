@@ -1,5 +1,5 @@
 ###############################################################################
-# Combination of all project files to allow running under codeskuptor
+# Combination of all project files to allow running under codeskulptor
 #
 # You can also run this as is in
 # http://www.tutorialspoint.com/execute_python_online.php
