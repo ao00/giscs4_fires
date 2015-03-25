@@ -1,4 +1,8 @@
+###############################################################################
 # Combination of all project files to allow running under codeskuptor
+#
+# You can also run this as is in
+# http://www.tutorialspoint.com/execute_python_online.php
 ###############################################################################
 # imports
 import math
