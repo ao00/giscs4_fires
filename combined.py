@@ -137,8 +137,6 @@ def getDistance(zfLat1, zfLong1, zfLat2, zfLong2):
 
     return metersSiam
 
-print getDistance(40.76, -73.984,41.89, 12.492)
-
 ###############################################################################
 # other helper functions
 
