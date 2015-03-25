@@ -182,9 +182,8 @@ def Main():
     fWindDirection       = 0
     iNumberOfFiresUpwind = 0
 
-
+#Time,TemperatureC,DewpointC,PressurehPa,WindDirection,WindDirectionDegrees,WindSpeedKMH,WindSpeedGustKMH,Humidity,HourlyPrecipMM,Conditions,Clouds,dailyrainMM,SoftwareType,DateUTC
     lstWeatherData = [\
-"Time,TemperatureC,DewpointC,PressurehPa,WindDirection,WindDirectionDegrees,WindSpeedKMH,WindSpeedGustKMH,Humidity,HourlyPrecipMM,Conditions,Clouds,dailyrainMM,SoftwareType,DateUTC",\
 "2015-03-24 00:04:00,26.0,18.4,1010.0,North,-9999,0.0,0.0,63,0.0,,,-2539.7,weewx-3.1.0,2015-03-23 17:04:00,",\
 "2015-03-24 00:09:00,26.0,18.4,1010.0,North,-9999,0.0,0.0,63,0.0,,,-2539.7,weewx-3.1.0,2015-03-23 17:09:00,",\
 "2015-03-24 00:14:00,25.9,18.6,1010.0,North,-9999,0.0,0.0,64,0.0,,,-2539.7,weewx-3.1.0,2015-03-23 17:14:00,",\
@@ -197,6 +196,7 @@ def Main():
 "2015-03-24 00:49:00,-573.3,-73.3,-3386.0,North,-9999,-1608.8,-1607.4,-999,0.0,,,0.0,weewx-3.1.0,2015-03-23 17:49:00, "\
 ]
 
+#latitude,longitude,brightness,scan,track,acq_date,acq_time,satellite,confidence,version,bright_t31,frp
     lstFireData = [\
 "19.924,97.482,314.9,4.4,1.9,2015-03-21, 0325,T,54,5.0       ,304.1,49",\
 "19.282,100.96,312.6,2.4,1.5,2015-03-21, 0325,T,55,5.0       ,296.7,25",\
