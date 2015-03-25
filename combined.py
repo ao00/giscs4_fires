@@ -106,6 +106,8 @@ def getDirection(zfLat1, zfLong1, zfLat2, zfLong2):
 # distance
 
 # finds the distance between 2 given latitude&longitude coordinates
+import math
+
 def deg2rad(fDeg):
     return fDeg * (math.pi / 180.0)
 
@@ -127,12 +129,16 @@ def getDistance(zfLat1, zfLong1, zfLat2, zfLong2):
     dist1 = math.acos(dist)
 
     dist2 = rad2deg(dist1)
+    
+    #metersAverage uses an average volumetric radius
+    metersAverage = (dist2 * 111.18957696 * 1000.0)
+    
+    #metersSiam uses a specific radius to Siam's latitude
+    metersSiam = (dist1 * 6372796.0)
 
-    meters1 = (dist2 * 111.18957696 * 1000.0)
+    return metersSiam
 
-    meters2 = (dist1 * 6372796.0)
-
-    return meters2
+print getDistance(40.76, -73.984,41.89, 12.492)
 
 ###############################################################################
 # other helper functions
