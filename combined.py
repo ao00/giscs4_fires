@@ -149,7 +149,7 @@ def isFireUpwind(fWindDirection, fFireBearing):
     elif fDiff > 360:
         fDiff = fDiff - 360
 
-    if fDiff > -45 and fDiff < 45:
+    if fDiff > 315 or fDiff < 45:
         return True
 
     return False
