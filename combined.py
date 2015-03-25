@@ -1,5 +1,9 @@
 # Combination of all project files to allow running under codeskuptor
 ###############################################################################
+# imports
+import math
+
+
 ###############################################################################
 # csv
 # Function: getCSVStrFromIndex(zi, zstrCSV)
@@ -69,7 +73,6 @@ def getWindDirection(zstrWeatherCSV):
 
 ###############################################################################
 # direction
-import math
 # http://www.sunearthtools.com/tools/distance.php Test Data
 def getDirection(zfLat1, zfLong1, zfLat2, zfLong2):
     #http://mathforum.org/library/drmath/view/55417.html
@@ -106,8 +109,6 @@ def getDirection(zfLat1, zfLong1, zfLat2, zfLong2):
 # distance
 
 # finds the distance between 2 given latitude&longitude coordinates
-import math
-
 def deg2rad(fDeg):
     return fDeg * (math.pi / 180.0)
 
