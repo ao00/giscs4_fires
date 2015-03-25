@@ -22,8 +22,6 @@ def getCSVStrFromIndex(zi, zstrCSV):
 
 ###############################################################################
 # values from csv
-from getCSVStrFromIndex import *
-
 def getCSVIntFromIndex(zi, zstrCSV):
     strCSV = getCSVStrFromIndex(zi, zstrCSV);
     try:
