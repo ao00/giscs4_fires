@@ -64,11 +64,6 @@ def getWindDirection(zstrWeatherCSV):
     return getCSVIntFromIndex(5, zstrWeatherCSV)
 
 
-
-###############################################################################
-# speed
-
-
 ###############################################################################
 # direction
 # http://www.sunearthtools.com/tools/distance.php Test Data
@@ -136,6 +131,32 @@ def getDistance(zfLat1, zfLong1, zfLat2, zfLong2):
     return meters2
 
 ###############################################################################
+# other helper functions
+
+
+def isFireUpwind(fWindDirection, fFireBearing):
+    fDiff = fWindDirection - fFireBearing
+
+    if fDiff < 0:
+        fDiff = fDiff + 360
+    elif fDiff > 360:
+        fDiff = fDiff - 360
+
+    if fDiff > -45 and fDiff < 45:
+        return True
+
+    return False
+
+
+
+def isFireAffectingUs(fFireMagnitude, fFireDistance, fWindSpeed):
+
+    if fFireDistance < 1000000:
+        return True
+
+    return False
+    
+    
 ###############################################################################
 # Data files download:
 # http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=ICHIANGM6&day=17&month=3&year=2015&graphspan=day&format=1
