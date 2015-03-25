@@ -106,7 +106,6 @@ def getDirection(zfLat1, zfLong1, zfLat2, zfLong2):
 # distance
 
 # finds the distance between 2 given latitude&longitude coordinates
-import math
 
 def deg2rad(fDeg):
     return fDeg * (math.pi / 180.0)
