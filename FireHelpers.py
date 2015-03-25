@@ -1,5 +1,7 @@
 
-
+##################################################################################
+# isFireUnwind - takes wind direction and fire bearing, and works out whether
+#                the fire is within a +/- 45 degrees cone upwind
 def isFireUpwind(fWindDirection, fFireBearing):
     fDiff = fWindDirection - fFireBearing
 
@@ -13,8 +15,23 @@ def isFireUpwind(fWindDirection, fFireBearing):
 
     return False
 
+def TestisFireUpwind():
+    if isFireUpwind(45, 44) != True:
+        return False
 
+    if isFireUpwind(0, -44) != True:
+        return False
 
+    if isFireUpwind(180, 190) != True:
+        return False    
+
+    if isFireUpwind(180, 170) != True:
+        return False  
+    
+
+##################################################################################
+# bases on distance, wind speed and magnitude, tries to work out whether
+# this fire is affecting us
 def isFireAffectingUs(fFireMagnitude, fFireDistance, fWindSpeed):
 
     if fFireDistance < 1000000:
