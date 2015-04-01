@@ -5,11 +5,16 @@ import urllib3
 def getLatestWeatherData():
     try:
 
-        sURLRequest = "http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=ICHIANGM6&day=" + time.strftime("%d") +\
+        # http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=ICHANGWA3&day=1&month=3&year=2015&dayend=1&monthend=4&yearend=2015&graphspan=custom&format=1
+
+#        sURLRequest = "http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=ICHIANGM6&day=" + time.strftime("%d") +\
+#                      "&month=" + time.strftime("%m") +\
+#                     "&year=" + time.strftime("%Y") +\
+#                      "&graphspan=day&format=1"
+        sURLRequest = "http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=ICHANGWA3&day=" + time.strftime("%d") +\
                       "&month=" + time.strftime("%m") +\
                      "&year=" + time.strftime("%Y") +\
                       "&graphspan=day&format=1"
-
 
         http = urllib3.PoolManager()
         request = http.request('GET', sURLRequest)
@@ -39,7 +44,7 @@ def getLatestFireData():
 
         #sURLRequest = "http://pw.ajosoft.com/pwseasiafires24h.php"
         #sURLRequest = "http://pw.ajosoft.com/pwsasiafires24h.php"
-        sURLRequest = "http://pw.ajosoft.com/pwglobalfires24h.php"
+        sURLRequest = "http://pw.ajosoft.com/pwglobalfires48h.php"
 
 
         http = urllib3.PoolManager(timeout=30.0)
