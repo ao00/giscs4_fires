@@ -4,7 +4,7 @@ from getCSVValueFromIndex import *
 from getCSVStrFromIndex import *
 from getDirection import *
 from getDistance import *
-
+from getNewPosition import *
 
 #Master Test Function
 def masterTestFunction():
@@ -25,6 +25,9 @@ def masterTestFunction():
         return False
 
     if not TestgetDistance():
+        return False
+
+    if not TestgetNewPositionFromDistanceAndDirection():
         return False
 
     return True
