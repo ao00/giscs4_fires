@@ -68,10 +68,17 @@ def getLongitude(zstrFireCSV):
 def getMagnitude(zstrFireCSV):
     return getCSVFloatFromIndex(2, zstrFireCSV)
 
+def getFireTimeStamp(zstrWeatherCSV):
+    return getCSVStrFromIndex(5, zstrWeatherCSV)
+
 
 #Test Get Fire Value Function
 def testGetFireValueFunctions():
     strTestFireCSV = "-13.501,-172.57,311.5,3,1.6,2015-03-29, 0040,A,33,5.0       ,292.6,45.5"
+
+    strValue = getFireTimeStamp(strTestFireCSV)
+    if strValue !="2015-03-29":
+        return False
 
     fValue = getLatitude(strTestFireCSV)
     if fValue != -13.501:
@@ -96,10 +103,18 @@ def getWindSpeed(zstrWeatherCSV):
 def getWindDirection(zstrWeatherCSV):
     return getCSVIntFromIndex(5, zstrWeatherCSV)
 
+def getWeatherTimeStamp(zstrWeatherCSV):
+    return getCSVStrFromIndex(0, zstrWeatherCSV)
+
+
 
 #Test Get Weather Value Function
 def testGetWeatherValueFunctions():
     sTestCSV = "2015-03-17 00:00:00,24.0,15.8,1014.8,SW,225,1.1,1.1,60,0.0,,,0.0,Cumulus v1.9.4,2015-03-16 17:00:00,"
+
+    strValue = getWeatherTimeStamp(sTestCSV)
+    if strValue != "2015-03-17 00:00:00":
+        return False
 
     fValue = getWindSpeed(sTestCSV)
     if fValue != 1.1:
