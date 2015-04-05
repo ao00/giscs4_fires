@@ -38,3 +38,4 @@ def isFireAffectingUs(fFireMagnitude, fFireDistance, fWindSpeed):
         return True
 
     return False
+

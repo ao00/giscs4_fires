@@ -29,6 +29,10 @@ def getDirection(zfLat1, zfLong1, zfLat2, zfLong2):
         elif x < 0:
             tc1 = 180
             #elif x == 0: the 2 points are the same
+
+    if tc1 < 0:
+        tc1 = tc1 + 360
+
     return tc1
 
 
@@ -38,7 +42,7 @@ def TestgetDirection():
         return False
 
     fResult = getDirection(0, 98.9407, 0 + 1, 98.9407 - 1)
-    if round(fResult, 2) != -45.00:
+    if round(fResult, 2) != -45.00 + 360:
         return False
 
     fResult = getDirection(0, 98.9407, 0 - 1, 98.9407 + 1)
@@ -46,7 +50,7 @@ def TestgetDirection():
         return False
 
     fResult = getDirection(0, 98.9407, 0 - 1, 98.9407 - 1)
-    if round(fResult, 2) != -135.00:
+    if round(fResult, 2) != -135.00 + 360:
         return False
 
 

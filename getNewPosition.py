@@ -6,7 +6,7 @@ __author__ = 'adrianol'
 import math
 # http://www.sunearthtools.com/tools/distance.php Test Data
 
-def getNewPositionFromDistanceAndDirection(zfLatStart, zfLongStart, zfDistanceInKM, zfBearing):
+def getNewPositionFromDistanceAndDirection(zfLatStart, zfLongStart, zfBearing, zfDistanceInKM):
     fLatNew  = zfLatStart
     fLongNew = zfLongStart
 
@@ -40,19 +40,19 @@ def getNewPositionFromDistanceAndDirection(zfLatStart, zfLongStart, zfDistanceIn
 
 
 def TestgetNewPositionFromDistanceAndDirection():
-    Result = getNewPositionFromDistanceAndDirection(18.729000, 98.940700, 1000, 37)
+    Result = getNewPositionFromDistanceAndDirection(18.729000, 98.940700, 37, 1000)
     if round(Result['Latitude'], 2) != 25.81 and round(Result['Longitude'], 2) != 104.94:
         return False
 
-    Result = getNewPositionFromDistanceAndDirection(18.729000, 98.940700, 1000, 136)
+    Result = getNewPositionFromDistanceAndDirection(18.729000, 98.940700, 136, 1000)
     if round(Result['Latitude'], 2) != 12.16 and round(Result['Longitude'], 2) != 105.32:
         return False
 
-    Result = getNewPositionFromDistanceAndDirection(18.729000, 98.940700, 1000, 210)
+    Result = getNewPositionFromDistanceAndDirection(18.729000, 98.940700, 210, 1000)
     if round(Result['Latitude'], 2) != 10.89 and round(Result['Longitude'], 2) != 94.38:
         return False
 
-    Result = getNewPositionFromDistanceAndDirection(18.729000, 98.940700, 1000, 310)
+    Result = getNewPositionFromDistanceAndDirection(18.729000, 98.940700, 310, 1000)
     if round(Result['Latitude'], 2) != 24.35 and round(Result['Longitude'], 2) != 91.39:
         return False
 
