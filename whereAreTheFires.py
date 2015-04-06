@@ -35,7 +35,7 @@ def Main():
     fWindDirection       = 0
     iNumberOfFiresUpwind = 0
 
-    #getLatestWebData(sFireDataFilename, sWeatherDataFilename)
+    getLatestWebData(sFireDataFilename, sWeatherDataFilename)
 
     listOfTimeWindDirectionAndDistance = calculateWindVectors(sWeatherDataFilename, fGISLatitude, fGISLongitude)
 
