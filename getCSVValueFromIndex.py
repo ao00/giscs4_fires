@@ -112,7 +112,10 @@ def getWeatherTimeStamp(zstrWeatherCSV):
     return getCSVStrFromIndex(13, zstrWeatherCSV)
 
 def getWeatherTemperature(zstrWeatherCSV):
-    return getCSVFloatFromIndex(1, zstrWeatherCSV)
+    fTemp = getCSVFloatFromIndex(1, zstrWeatherCSV)
+    if fTemp != None and fTemp > -270:
+        return fTemp
+    return None
 
 
 #Test Get Weather Value Function
