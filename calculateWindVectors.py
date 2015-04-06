@@ -32,10 +32,16 @@ def calculateWindVectors(strWeatherDataFilenname,\
                         strTimeStamp = getWeatherTimeStamp(sALine)
 
                         if strTimeStamp != None:
-                            # time to process...
-                            TimeStamp = time.mktime(time.strptime(strTimeStamp, '%Y-%m-%d %H:%M:%S'))
 
-                            listTimeDirectionSpeed[TimeStamp] = [fWindDirection, fWindSpeed]
+                            # check that there is also a valid temperature
+                            fTemperature = getWeatherTemperature(sALine)
+
+                            if fTemperature != None:    # good...
+
+                                # time to process...
+                                TimeStamp = time.mktime(time.strptime(strTimeStamp, '%Y-%m-%d %H:%M:%S'))
+
+                                listTimeDirectionSpeed[TimeStamp] = [fWindDirection, fWindSpeed]
 
         #print listTimeDirectionSpeed
 

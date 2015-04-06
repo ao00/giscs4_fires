@@ -111,6 +111,9 @@ def getWindDirection(zstrWeatherCSV):
 def getWeatherTimeStamp(zstrWeatherCSV):
     return getCSVStrFromIndex(13, zstrWeatherCSV)
 
+def getWeatherTemperature(zstrWeatherCSV):
+    return getCSVFloatFromIndex(1, zstrWeatherCSV)
+
 
 #Test Get Weather Value Function
 def testGetWeatherValueFunctions():
@@ -133,6 +136,11 @@ def testGetWeatherValueFunctions():
     strValue = getWeatherTimeStamp(sTestCSV)
     if strValue != "2015-04-03 17:00:00":
         return False
+
+    fValue = getWeatherTemperature(sTestCSV)
+    if fValue != 29.0:
+        return False
+
 
     fValue = getWindSpeed(sTestCSV)
     if fValue != 7.4:

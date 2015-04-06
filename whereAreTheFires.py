@@ -101,8 +101,8 @@ def Main():
     NearbyFiresFilename.close()
 
 
-    for Direction, Count in listOfNumberOfFiresInEachDirection:
-        NearbyFiresFilename.write("{0:3d} - {1:6d} fires within {2:d}km\n".format(Direction, Count, fMaximumDistanceInKM))
+    #for Direction, Count in listOfNumberOfFiresInEachDirection:
+    #    NearbyFiresFilename.write("{0:3d} - {1:6d} fires within {2:d}km\n".format(Direction, Count, fMaximumDistanceInKM))
 
 
     # now check the fire data
