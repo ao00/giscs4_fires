@@ -45,7 +45,7 @@ def calculateWindVectors(strWeatherDataFilenname,\
 
         listTimeDirectionSpeed.clear()
 
-        tmCurrentTime = time.time()
+        tmCurrentTime = None
         fLatitude  = fLatitudeStart
         fLongitude = fLongitudeStart
         fBearing   = 0
@@ -54,6 +54,8 @@ def calculateWindVectors(strWeatherDataFilenname,\
         for TimeStamp, WindDirectionAndSpeed in TimeDirectionSpeedSorted:
 
             if WindDirectionAndSpeed[1] > 0:
+                if tmCurrentTime == None:
+                    tmCurrentTime = TimeStamp
                 tmTimeDiff = tmCurrentTime - TimeStamp
 
                 fDistance = WindDirectionAndSpeed[1] * tmTimeDiff / 60.0 / 60.0
@@ -72,7 +74,7 @@ def calculateWindVectors(strWeatherDataFilenname,\
                 fDistance = getDistance(fLatitudeStart, fLongitudeStart,\
                                         fLatitude, fLongitude)
 
-            listTimeDirectionSpeed[TimeStamp] = [fBearing, fDistance]
+            listTimeDirectionSpeed[TimeStamp] = [fBearing, fDistance, WindDirectionAndSpeed[0], WindDirectionAndSpeed[1]]
 
             tmCurrentTime   = TimeStamp
 

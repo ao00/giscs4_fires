@@ -21,24 +21,37 @@ def Main():
     # Definitions
     fGISLatitude            = 18.729000
     fGISLongitude           = 98.940700
-    fMaximumDistanceInKM    = 1000
+    fMaximumDistanceInKM    = 100
 
-    sWeatherDataFilename = "WeatherData.csv"
-    sFireDataFilename    = "FireData.csv"
+    sWeatherDataFilename        = "output/WeatherData.csv"
+    sFireDataFilename           = "output/FireData.csv"
+    sWindPositionFilename       = "output/WindPosition.dat"
+    sNearbyFiresFilename20km    = "output/NearbyFires20km.dat"
+    sNearbyFiresFilename100km   = "output/NearbyFires100km.dat"
+    sNearbyFiresFilename500km   = "output/NearbyFires500km.dat"
 
     # First we find the current wind direction
     fWindSpeed           = 0
     fWindDirection       = 0
     iNumberOfFiresUpwind = 0
 
-    getLatestWebData(sFireDataFilename, sWeatherDataFilename)
+    #getLatestWebData(sFireDataFilename, sWeatherDataFilename)
 
     listOfTimeWindDirectionAndDistance = calculateWindVectors(sWeatherDataFilename, fGISLatitude, fGISLongitude)
 
     #print listOfTimeWindDirectionAndDistance
 
+
+    WindPositionFilename = open(sWindPositionFilename, "wt")
     for TimeStamp, DirectionDistance in listOfTimeWindDirectionAndDistance:
-        print datetime.datetime.fromtimestamp(TimeStamp), int(DirectionDistance[0]), int(DirectionDistance[1])
+        WindPositionFilename.write("{0}, {1:d}, {2:d}, {3:d}, {4:d}\n".format(\
+            datetime.datetime.fromtimestamp(TimeStamp),\
+            int(DirectionDistance[0]), \
+            int(DirectionDistance[1]), \
+            int(DirectionDistance[2]), \
+            int(DirectionDistance[3])))
+    WindPositionFilename.close()
+
 
 
     sALine = ""
@@ -54,14 +67,42 @@ def Main():
             if fValue != None and fValue > -361 and fValue <361:
                  fWindDirection = fValue
 
-
+    # 10km Nearby fires
     listOfNumberOfFiresInEachDirection = determineDirectOfAllFiresWithinDistance(sFireDataFilename,\
                                             fGISLatitude,
                                             fGISLongitude,
-                                            fMaximumDistanceInKM)
+                                            20)
+
+    NearbyFiresFilename = open(sNearbyFiresFilename20km, "wt")
+    for Direction, Count in listOfNumberOfFiresInEachDirection:
+        NearbyFiresFilename.write("{0:d}, {1:d}\n".format(Direction, Count))
+    NearbyFiresFilename.close()
+
+    # 100km Nearby fires
+    listOfNumberOfFiresInEachDirection = determineDirectOfAllFiresWithinDistance(sFireDataFilename,\
+                                            fGISLatitude,
+                                            fGISLongitude,
+                                            100)
+
+    NearbyFiresFilename = open(sNearbyFiresFilename100km, "wt")
+    for Direction, Count in listOfNumberOfFiresInEachDirection:
+        NearbyFiresFilename.write("{0:d}, {1:d}\n".format(Direction, Count))
+    NearbyFiresFilename.close()
+
+    # 100km Nearby fires
+    listOfNumberOfFiresInEachDirection = determineDirectOfAllFiresWithinDistance(sFireDataFilename,\
+                                            fGISLatitude,
+                                            fGISLongitude,
+                                            500)
+
+    NearbyFiresFilename = open(sNearbyFiresFilename500km, "wt")
+    for Direction, Count in listOfNumberOfFiresInEachDirection:
+        NearbyFiresFilename.write("{0:d}, {1:d}\n".format(Direction, Count))
+    NearbyFiresFilename.close()
+
 
     for Direction, Count in listOfNumberOfFiresInEachDirection:
-        print "{0:3d} - {1:6d} fires within {2:d}km".format(Direction, Count, fMaximumDistanceInKM)
+        NearbyFiresFilename.write("{0:3d} - {1:6d} fires within {2:d}km\n".format(Direction, Count, fMaximumDistanceInKM))
 
 
     # now check the fire data

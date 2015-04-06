@@ -2,7 +2,6 @@
 
 from getCSVStrFromIndex import *
 
-
 def getCSVIntFromIndex(zi, zstrCSV):
     strCSV = getCSVStrFromIndex(zi, zstrCSV);
     try:
@@ -95,34 +94,55 @@ def testGetFireValueFunctions():
     return True
 
 
-#Wind Data
+###############################################################################
+# METAR Weather Data
+# TimeICT,TemperatureC,Dew PointC,Humidity,Sea Level PressurehPa,VisibilityKm,Wind Direction,Wind SpeedKm/h,Gust SpeedKm/h,Precipitationmm,Events,Conditions,WindDirDegrees,DateUTC
+# 12:00 AM,29.0,14.0,40,1007,8.0,ENE,7.4,-,N/A,,Partly Cloudy,70,2015-04-03 17:00:00
+# note - we have changed to use a METAR station data rather than a PWS (Private Weather Station) source
+# METAR stations are normally airports which are far more accurate and reliable
+#
 def getWindSpeed(zstrWeatherCSV):
-    return getCSVFloatFromIndex(6, zstrWeatherCSV)
+    return getCSVFloatFromIndex(7, zstrWeatherCSV)
 
 
 def getWindDirection(zstrWeatherCSV):
-    return getCSVIntFromIndex(5, zstrWeatherCSV)
+    return getCSVIntFromIndex(12, zstrWeatherCSV)
 
 def getWeatherTimeStamp(zstrWeatherCSV):
-    return getCSVStrFromIndex(0, zstrWeatherCSV)
-
+    return getCSVStrFromIndex(13, zstrWeatherCSV)
 
 
 #Test Get Weather Value Function
 def testGetWeatherValueFunctions():
-    sTestCSV = "2015-03-17 00:00:00,24.0,15.8,1014.8,SW,225,1.1,1.1,60,0.0,,,0.0,Cumulus v1.9.4,2015-03-16 17:00:00,"
+    #sTestCSV = "2015-03-17 00:00:00,24.0,15.8,1014.8,SW,225,1.1,1.1,60,0.0,,,0.0,Cumulus v1.9.4,2015-03-16 17:00:00,"
+
+    #strValue = getWeatherTimeStamp(sTestCSV)
+    #if strValue != "2015-03-17 00:00:00":
+    #    return False
+
+    #fValue = getWindSpeed(sTestCSV)
+    #if fValue != 1.1:
+    #    return False
+
+    #fValue = getWindDirection(sTestCSV)
+    #if fValue != 225:
+    #    return False
+
+    sTestCSV = "12:00 AM,29.0,14.0,40,1007,8.0,ENE,7.4,-,N/A,,Partly Cloudy,70,2015-04-03 17:00:00<br />\n\r"
 
     strValue = getWeatherTimeStamp(sTestCSV)
-    if strValue != "2015-03-17 00:00:00":
+    if strValue != "2015-04-03 17:00:00":
         return False
 
     fValue = getWindSpeed(sTestCSV)
-    if fValue != 1.1:
+    if fValue != 7.4:
         return False
 
     fValue = getWindDirection(sTestCSV)
-    if fValue != 225:
+    if fValue != 70:
         return False
+
+
 
     return True
 

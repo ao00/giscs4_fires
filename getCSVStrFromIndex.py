@@ -1,9 +1,18 @@
+import re
 # Function: getCSVStrFromIndex(zi, zstrCSV)
 # Parameters: zi = index (zi = 0 for first value), zstrCSV = line of CSV data
 # Return: strValue (the string in the CSV at index zi)
 # Description: Extract string value from a line of CSV data using index
 def getCSVStrFromIndex(zi, zstrCSV):
     try:
+        # remove any HTML tags from string
+        zstrCSV = re.sub('<[^>]*>', '', zstrCSV)
+
+        # remove newline
+        zstrCSV = re.sub('\n', '', zstrCSV)
+
+        # remove carrage return
+        zstrCSV = re.sub('\r', '', zstrCSV)
         strResults = zstrCSV.split(",")[zi]
         return strResults
     except:

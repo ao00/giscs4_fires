@@ -28,7 +28,8 @@ def getDirection(zfLat1, zfLong1, zfLat2, zfLong2):
             tc1 = 0
         elif x < 0:
             tc1 = 180
-            #elif x == 0: the 2 points are the same
+        elif x == 0: #the 2 points are the same
+            tc1 = 0
 
     if tc1 < 0:
         tc1 = tc1 + 360
