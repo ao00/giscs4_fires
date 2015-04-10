@@ -7,11 +7,17 @@ from getDistance import *
 from getDirection import *
 
 ##################################################################################
-def determineDirectOfAllFiresWithinDistance(strFireDataFilenname,\
-                                            fLatitude,\
-                                            fLongitude,\
+def determineDirectOfAllFiresWithinDistance(strFireDataFilenname,
+                                            fLatitude,
+                                            fLongitude,
                                             fMaximumDistanceInKM):
     listOfNumberOfFiresInEachDirection = dict()
+    # make sure we populate the list...
+    iCount = 0
+    while iCount < 360:
+        listOfNumberOfFiresInEachDirection[iCount] = 0
+        iCount = iCount + 45
+
     fhFireData = open(strFireDataFilenname)
     for sALine in fhFireData:
         # Where is the fire?
@@ -26,12 +32,12 @@ def determineDirectOfAllFiresWithinDistance(strFireDataFilenname,\
 
 
                 # close?
-                fFireDistance = getDistance(fLatitude, fLongitude,\
+                fFireDistance = getDistance(fLatitude, fLongitude,
                                             fFireLat,  fFireLong)
 
                 if fFireDistance < fMaximumDistanceInKM * 1000:
                     # What direction is the fire?
-                    fFireBearing = getDirection(fLatitude, fLongitude,\
+                    fFireBearing = getDirection(fLatitude, fLongitude,
                                                 fFireLat,  fFireLong)
 
                     # found to nearest 45degrees
