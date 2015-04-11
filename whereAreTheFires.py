@@ -9,6 +9,7 @@ from FireHelpers import *
 from getWebData import *
 from calculateWindVectors import *
 from DirectOfAllFiresWithinDistance import *
+from getLatestAQDailyAverage import *
 
 # Data files download:
 # http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=ICHIANGM6&day=17&month=3&year=2015&graphspan=day&format=1
@@ -30,14 +31,30 @@ def Main():
     sNearbyFiresFilename20km        = "output/NearbyFires20km.dat"
     sNearbyFiresFilename100km       = "output/NearbyFires100km.dat"
     sNearbyFiresFilename500km       = "output/NearbyFires500km.dat"
+    sAirQualityDailyAveragesLatest  = "output/AQDailyAveragesLatest.dat"
+    sAirQualityDailyAverages        = "output/AQDailyAverages.dat"
 
     # First we find the current wind direction
     fWindSpeed           = 0
     fWindDirection       = 0
     iNumberOfFiresUpwind = 0
 
-    #getLatestWebData(sFireDataFilename, sWeatherDataFilename)
+    #getLatestWebData(sFireDataFilename, sWeatherDataFilename, sAirQualityDailyAveragesLatest)
 
+
+    # Get AirQuality average
+    latestAQDailyAverage = getLatestAQDailyAverage(sAirQualityDailyAveragesLatest)
+    if latestAQDailyAverage != None:
+        DailyAQFilename = open(sAirQualityDailyAverages, "at")
+
+        DailyAQFilename.write("{0}, {1:d}, {2:d}\n".format(
+            datetime.datetime.fromtimestamp(latestAQDailyAverage[0]),
+            int(latestAQDailyAverage[1]),
+            int(latestAQDailyAverage[2])))
+        DailyAQFilename.close()
+
+
+    # Get Wind Vectors
     listOfTimeWindDirectionAndDistance = calculateWindVectors(sWeatherDataFilename, fGISLatitude, fGISLongitude)
 
     #print listOfTimeWindDirectionAndDistance
