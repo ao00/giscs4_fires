@@ -39,7 +39,7 @@ def Main():
     fWindDirection       = 0
     iNumberOfFiresUpwind = 0
 
-    #getLatestWebData(sFireDataFilename, sWeatherDataFilename, sAirQualityDailyAveragesLatest)
+    getLatestWebData(sFireDataFilename, sWeatherDataFilename, sAirQualityDailyAveragesLatest)
 
 
     # Get AirQuality average
