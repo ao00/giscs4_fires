@@ -100,11 +100,11 @@ def Main():
                  fWindDirection = fValue
 
     # 10km Nearby fires
-    print "Determining fires within 10km radius"
+    print "Determining fires within 20km radius"
     listOfNumberOfFiresInEachDirection = determineDirectOfAllFiresWithinDistance(sFireDataFilename,\
                                             fGISLatitude,
                                             fGISLongitude,
-                                            10)
+                                            20)
 
     NearbyFiresFilename = open(sNearbyFiresFilename20km, "at")
     NearbyFiresFilename.write("{0}, ".format(datetime.datetime.now()))
