@@ -30,6 +30,7 @@ def Main():
     sDailyWindPositionFilename      = "output/WindPositionDaily.dat"
     sNearbyFiresFilename20km        = "output/NearbyFires20km.dat"
     sNearbyFiresFilename100km       = "output/NearbyFires100km.dat"
+    sNearbyFiresFilename200km       = "output/NearbyFires200km.dat"
     sNearbyFiresFilename500km       = "output/NearbyFires500km.dat"
     sAirQualityDailyAveragesLatest  = "output/AQDailyAveragesLatest.dat"
     sAirQualityDailyAverages        = "output/AQDailyAverages.dat"
@@ -39,10 +40,12 @@ def Main():
     fWindDirection       = 0
     iNumberOfFiresUpwind = 0
 
+    print "Downloading latest data"
     getLatestWebData(sFireDataFilename, sWeatherDataFilename, sAirQualityDailyAveragesLatest)
 
 
     # Get AirQuality average
+    print "Extracting latest AirQuality"
     latestAQDailyAverage = getLatestAQDailyAverage(sAirQualityDailyAveragesLatest)
     if latestAQDailyAverage != None:
         DailyAQFilename = open(sAirQualityDailyAverages, "at")
@@ -55,6 +58,7 @@ def Main():
 
 
     # Get Wind Vectors
+    print "Calculating wind vector"
     listOfTimeWindDirectionAndDistance = calculateWindVectors(sWeatherDataFilename, fGISLatitude, fGISLongitude)
 
     #print listOfTimeWindDirectionAndDistance
@@ -96,10 +100,11 @@ def Main():
                  fWindDirection = fValue
 
     # 10km Nearby fires
+    print "Determining fires within 10km radius"
     listOfNumberOfFiresInEachDirection = determineDirectOfAllFiresWithinDistance(sFireDataFilename,\
                                             fGISLatitude,
                                             fGISLongitude,
-                                            20)
+                                            10)
 
     NearbyFiresFilename = open(sNearbyFiresFilename20km, "at")
     NearbyFiresFilename.write("{0}, ".format(datetime.datetime.now()))
@@ -110,6 +115,7 @@ def Main():
 
 
     # 100km Nearby fires
+    print "Determining fires within 100km radius"
     listOfNumberOfFiresInEachDirection = determineDirectOfAllFiresWithinDistance(sFireDataFilename,\
                                             fGISLatitude,
                                             fGISLongitude,
@@ -123,8 +129,23 @@ def Main():
     NearbyFiresFilename.close()
 
 
+    # 200km Nearby fires
+    print "Determining fires within 200km radius"
+    listOfNumberOfFiresInEachDirection = determineDirectOfAllFiresWithinDistance(sFireDataFilename,\
+                                            fGISLatitude,
+                                            fGISLongitude,
+                                            200)
 
-    # 100km Nearby fires
+    NearbyFiresFilename = open(sNearbyFiresFilename200km, "at")
+    NearbyFiresFilename.write("{0}, ".format(datetime.datetime.now()))
+    for Direction, Count in listOfNumberOfFiresInEachDirection:
+        NearbyFiresFilename.write("{0:d}, {1:d}, ".format(Direction, Count))
+    NearbyFiresFilename.write("\n")
+    NearbyFiresFilename.close()
+
+
+    # 500km Nearby fires
+    print "Determining fires within 500km radius"
     listOfNumberOfFiresInEachDirection = determineDirectOfAllFiresWithinDistance(sFireDataFilename,\
                                             fGISLatitude,
                                             fGISLongitude,
